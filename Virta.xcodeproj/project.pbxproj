@@ -9,11 +9,15 @@
 /* Begin PBXBuildFile section */
 		0FED0CE22453593800833419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0CE12453593800833419 /* AppDelegate.swift */; };
 		0FED0CE42453593800833419 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0CE32453593800833419 /* SceneDelegate.swift */; };
-		0FED0CE62453593800833419 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0CE52453593800833419 /* ContentView.swift */; };
+		0FED0CE62453593800833419 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0CE52453593800833419 /* LoginView.swift */; };
 		0FED0CE82453593C00833419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FED0CE72453593C00833419 /* Assets.xcassets */; };
 		0FED0CEB2453593C00833419 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FED0CEA2453593C00833419 /* Preview Assets.xcassets */; };
 		0FED0CEE2453593C00833419 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FED0CEC2453593C00833419 /* LaunchScreen.storyboard */; };
 		0FED0CF92453593C00833419 /* VirtaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0CF82453593C00833419 /* VirtaTests.swift */; };
+		0FED0D052453662B00833419 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D042453662B00833419 /* NetworkManager.swift */; };
+		0FED0D07245368EC00833419 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D06245368EC00833419 /* PostData.swift */; };
+		0FED0D0A24537D0A00833419 /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D0924537D0A00833419 /* StationsListView.swift */; };
+		0FED0D0C24537D2800833419 /* StationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D0B24537D2800833419 /* StationDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +34,7 @@
 		0FED0CDE2453593800833419 /* Virta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Virta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FED0CE12453593800833419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FED0CE32453593800833419 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0FED0CE52453593800833419 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0FED0CE52453593800833419 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0FED0CE72453593C00833419 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0FED0CEA2453593C00833419 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0FED0CED2453593C00833419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +42,10 @@
 		0FED0CF42453593C00833419 /* VirtaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirtaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FED0CF82453593C00833419 /* VirtaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtaTests.swift; sourceTree = "<group>"; };
 		0FED0CFA2453593C00833419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FED0D042453662B00833419 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		0FED0D06245368EC00833419 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
+		0FED0D0924537D0A00833419 /* StationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListView.swift; sourceTree = "<group>"; };
+		0FED0D0B24537D2800833419 /* StationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +87,10 @@
 		0FED0CE02453593800833419 /* Virta */ = {
 			isa = PBXGroup;
 			children = (
+				0FED0D0824537C3E00833419 /* Views */,
+				0FED0D032453660900833419 /* Models */,
 				0FED0CE12453593800833419 /* AppDelegate.swift */,
 				0FED0CE32453593800833419 /* SceneDelegate.swift */,
-				0FED0CE52453593800833419 /* ContentView.swift */,
 				0FED0CE72453593C00833419 /* Assets.xcassets */,
 				0FED0CEC2453593C00833419 /* LaunchScreen.storyboard */,
 				0FED0CEF2453593C00833419 /* Info.plist */,
@@ -105,6 +114,25 @@
 				0FED0CFA2453593C00833419 /* Info.plist */,
 			);
 			path = VirtaTests;
+			sourceTree = "<group>";
+		};
+		0FED0D032453660900833419 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0FED0D042453662B00833419 /* NetworkManager.swift */,
+				0FED0D06245368EC00833419 /* PostData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0FED0D0824537C3E00833419 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0FED0CE52453593800833419 /* LoginView.swift */,
+				0FED0D0924537D0A00833419 /* StationsListView.swift */,
+				0FED0D0B24537D2800833419 /* StationDetailsView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,9 +236,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FED0D07245368EC00833419 /* PostData.swift in Sources */,
+				0FED0D052453662B00833419 /* NetworkManager.swift in Sources */,
 				0FED0CE22453593800833419 /* AppDelegate.swift in Sources */,
 				0FED0CE42453593800833419 /* SceneDelegate.swift in Sources */,
-				0FED0CE62453593800833419 /* ContentView.swift in Sources */,
+				0FED0CE62453593800833419 /* LoginView.swift in Sources */,
+				0FED0D0C24537D2800833419 /* StationDetailsView.swift in Sources */,
+				0FED0D0A24537D0A00833419 /* StationsListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
