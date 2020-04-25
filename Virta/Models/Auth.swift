@@ -20,6 +20,8 @@ class SessionStore: ObservableObject {
         }
     }
     
+    var selectedStation: Station?
+    
     func  resetSession() {
         accessToken = nil
     }

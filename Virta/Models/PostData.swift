@@ -28,11 +28,48 @@ struct Evse: Decodable {
     let connectors: [Connector]
 }
 
+struct Pricing: Decodable {
+    let name: String
+    let priceCents: Double
+    let currency: String
+    let priceCentsWithoutVat: Double
+    let priceCentsVat: Double
+}
+
+struct EvseDetails: Decodable {
+    let id: Int
+    let connectors: [ConnectorDetails]
+    let available: Bool
+    let reservable: Bool
+    let reserved: Bool
+    let occupied: Bool
+    let isV2G: Bool
+    let currency: String
+    let pricing: [Pricing]
+    let oneTimePayment: Bool
+    let oneTimePaymentInAppEnabled: Bool
+    let status: Int
+    let oneTimeMinimum: Int
+    let oneTimePricing: [Pricing]
+    let oneTimePricingRatio: Int
+    let minutesWithoutTimeCharge: Int
+    let isFree: Bool
+    let evseId: String
+}
+
+struct ConnectorDetails: Decodable {
+    let connectorID: Int
+    let type: String
+    let maxKwh: Int
+    let maxKw: Int
+    let currentType: String
+}
+
 struct Station: Decodable, Identifiable {
     let id: Int
     let latitude: Double
     let longitude: Double
-    let icon: Int
+    let icon: Int?
     let name: String
     let city: String
     let address: String
@@ -40,4 +77,17 @@ struct Station: Decodable, Identifiable {
     let evses: [Evse]
     let isRemoved: Bool
     let isPrivate: Bool
+}
+
+struct StationDetails: Decodable, Identifiable {
+    let id: Int
+    let name: String
+    let latitude: Double
+    let longitude: Double
+    let icon: Int?
+    let address: String
+    let city: String
+    let openHours: String?
+    let providers: String?
+    let evses: [EvseDetails]
 }

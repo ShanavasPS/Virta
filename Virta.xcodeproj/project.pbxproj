@@ -20,6 +20,7 @@
 		0FED0D0C24537D2800833419 /* StationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D0B24537D2800833419 /* StationDetailsView.swift */; };
 		0FED0D0E2454080800833419 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D0D2454080800833419 /* AppRootView.swift */; };
 		0FED0D102454087800833419 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D0F2454087800833419 /* Auth.swift */; };
+		0FED0D16245430A800833419 /* StationListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D15245430A800833419 /* StationListItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		0FED0D0B24537D2800833419 /* StationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsView.swift; sourceTree = "<group>"; };
 		0FED0D0D2454080800833419 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
 		0FED0D0F2454087800833419 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		0FED0D15245430A800833419 /* StationListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				0FED0CE52453593800833419 /* LoginView.swift */,
+				0FED0D15245430A800833419 /* StationListItem.swift */,
 				0FED0D0924537D0A00833419 /* StationsListView.swift */,
 				0FED0D0B24537D2800833419 /* StationDetailsView.swift */,
 				0FED0D0D2454080800833419 /* AppRootView.swift */,
@@ -243,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FED0D07245368EC00833419 /* PostData.swift in Sources */,
+				0FED0D16245430A800833419 /* StationListItem.swift in Sources */,
 				0FED0D052453662B00833419 /* NetworkManager.swift in Sources */,
 				0FED0CE22453593800833419 /* AppDelegate.swift in Sources */,
 				0FED0CE42453593800833419 /* SceneDelegate.swift in Sources */,

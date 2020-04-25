@@ -10,11 +10,16 @@ import SwiftUI
 
 struct StationDetailsView: View {
     @ObservedObject var networkManager = NetworkManager()
+    var stationId: Int?
     var body: some View {
-        HStack {
-            Text("Station Details View")
+        VStack {
+            HStack {
+                Text(networkManager.station.name)
+                Image("logIn").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
+            }
+            Text(networkManager.station.address)
         }.onAppear {
-            
+            self.networkManager.getStationDetails(stationId: self.stationId!)
         }
     }
 }

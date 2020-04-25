@@ -15,7 +15,6 @@ struct StationsListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                
                 Button(action: {
                     self.session.resetSession()
                 }, label: { Text("Logout")
@@ -23,11 +22,11 @@ struct StationsListView: View {
                     .foregroundColor(.black)
                     .padding(.horizontal) })
                     .background(Color.yellow)
-                
-                NavigationLink(destination: StationDetailsView() )
-                { List(networkManager.stations) { station in
-                    StationsListItem(station: station)
-                } }
+                List(networkManager.stations) { station in
+                    NavigationLink(destination: StationDetailsView(stationId: station.id) ) {
+                        StationsListItem(station: station)
+                    }
+                }
             }
         }.onAppear {
             self.networkManager.getStations()
