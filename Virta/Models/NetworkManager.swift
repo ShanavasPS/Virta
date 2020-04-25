@@ -7,13 +7,13 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 class NetworkManager: ObservableObject {
-    
-    @EnvironmentObject var session: SessionStore
+    @Published var networkState = ""
     @Published var stations = [Station]()
     @Published var station = StationDetails(id: 0, name: "", latitude: 0.0, longitude: 0.0, icon: 0, address: "", city: "", openHours: "", providers: "", evses: [])
-    
+
     func loginUser(username: String, password: String, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         if let url = URL(string: "https://apitest.virta.fi/v4/auth") {
             var mutableRequest = URLRequest(url: url)
@@ -29,6 +29,7 @@ class NetworkManager: ObservableObject {
                     if let safeData = data {
                         do {
                             let result = try decoder.decode(Result.self, from: safeData)
+                            self.networkState = "LoggedIn"
                             completion(.success(result.token))
                         } catch {
                             print(error)
@@ -46,8 +47,8 @@ class NetworkManager: ObservableObject {
         }
     }
     
-    func getStations() {
-        if let url = URL(string: "https://apitest.virta.fi/v4/stations?from=160&limit=10") {
+    func getStations(location: CLLocation) {
+        if let url = URL(string: "https://apitest.virta.fi/v4/stations?latMin=\(location.latitude)&longMin=\(location.longitude)&latMax=\(location.latitude + 0.0300)&longMax=\(location.longitude + 0.0300)&limit=10") {
             var mutableRequest = URLRequest(url: url)
             mutableRequest.httpMethod = "GET"
             mutableRequest.cachePolicy = .reloadIgnoringLocalCacheData
@@ -60,6 +61,8 @@ class NetworkManager: ObservableObject {
                             let stations = try decoder.decode([Station].self, from: safeData)
                             DispatchQueue.main.async {
                                 self.stations = stations
+                                print(self.stations.count)
+                                self.networkState = "Stations listed"
                             }
                         } catch {
                             print(error)

@@ -11,7 +11,6 @@ import SwiftUI
 struct AppRootView: View {
 
     @EnvironmentObject var session: SessionStore
-    
     var body: some View {
         Group {
             if session.accessToken != nil {

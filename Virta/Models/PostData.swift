@@ -23,9 +23,24 @@ struct Connector: Decodable {
 }
 
 struct Evse: Decodable {
-    let id: Int
+    let id: String?
     let groupName: String
     let connectors: [Connector]
+    
+    private enum CodingKeys: String, CodingKey {
+        case id, groupName, connectors
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        groupName = try container.decode(String.self, forKey: .groupName)
+        connectors = try container.decode([Connector].self, forKey: .connectors)
+        if let value = try? container.decode(Int.self, forKey: .id) {
+            id = String(value)
+        } else {
+            id = try container.decode(String.self, forKey: .id)
+        }
+    }
 }
 
 struct Pricing: Decodable {
@@ -36,8 +51,16 @@ struct Pricing: Decodable {
     let priceCentsVat: Double
 }
 
+struct GenericCodingKeys: CodingKey {
+    var intValue: Int?
+    var stringValue: String
+
+    init?(stringValue: String) { self.stringValue = stringValue }
+    init?(intValue: Int) { self.intValue = intValue; self.stringValue = "\(intValue)" }
+}
+
 struct EvseDetails: Decodable, Identifiable {
-    let id: Int
+    let id: Int?
     let connectors: [ConnectorDetails]
     let available: Bool
     let reservable: Bool
@@ -72,7 +95,7 @@ struct Station: Decodable, Identifiable {
     let icon: Int?
     let name: String
     let city: String
-    let address: String
+    let address: String?
     let provider: String
     let evses: [Evse]
     let isRemoved: Bool

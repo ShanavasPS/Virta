@@ -8,13 +8,16 @@
 
 import SwiftUI
 
-
 struct StationsListView: View {
     @EnvironmentObject var session: SessionStore
     @ObservedObject var networkManager = NetworkManager()
+    @ObservedObject var locationManager = LocationManager()
+    
+    var stationCount: String  { return("\(networkManager.networkState)") }
     var body: some View {
         NavigationView {
             VStack {
+                Text("stationCount: \(self.stationCount)")
                 Button(action: {
                     self.session.resetSession()
                 }, label: { Text("Logout")
@@ -22,14 +25,17 @@ struct StationsListView: View {
                     .foregroundColor(.black)
                     .padding(.horizontal) })
                     .background(Color.yellow)
+                
                 List(networkManager.stations) { station in
                     NavigationLink(destination: StationDetailsView(stationId: station.id) ) {
                         StationsListItem(station: station)
                     }
-                }
+                }.onReceive(locationManager.$location, perform: { loc in
+                        if let location = loc {
+                            self.networkManager.getStations(location: location)
+                        }
+                })
             }.navigationBarTitle("Nearby")
-        }.onAppear {
-            self.networkManager.getStations()
         }
     }
 }
