@@ -18,8 +18,18 @@ struct StationDetailsView: View {
                 Image("logIn").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
             }
             Text(networkManager.station.address)
+            Text("Pick a charging point")
+            List(networkManager.station.evses) { evse in
+                Text("hello")
+            }
+            Text("Info and Help").fontWeight(.bold)
+            Text(networkManager.station.providers ?? "")
+            Text("Provider")
+            InfoView()
+            InfoView()
+            Spacer()
         }.onAppear {
-            self.networkManager.getStationDetails(stationId: self.stationId!)
+            self.networkManager.getStationDetails(stationId: self.stationId ?? 0)
         }
     }
 }

@@ -27,7 +27,7 @@ struct StationsListView: View {
                         StationsListItem(station: station)
                     }
                 }
-            }
+            }.navigationBarTitle("Nearby")
         }.onAppear {
             self.networkManager.getStations()
         }

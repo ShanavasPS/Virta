@@ -36,7 +36,7 @@ struct Pricing: Decodable {
     let priceCentsVat: Double
 }
 
-struct EvseDetails: Decodable {
+struct EvseDetails: Decodable, Identifiable {
     let id: Int
     let connectors: [ConnectorDetails]
     let available: Bool
