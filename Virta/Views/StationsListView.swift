@@ -11,13 +11,11 @@ import SwiftUI
 
 struct StationsListView: View {
     @EnvironmentObject var session: SessionStore
-
+    @ObservedObject var networkManager = NetworkManager()
     var body: some View {
         NavigationView {
             VStack {
-                Text("Stations List View").navigationBarTitle("Nearby")
-                NavigationLink(destination: StationDetailsView() )
-                { Text("Push to StationDetailsView.") }
+                
                 Button(action: {
                     self.session.resetSession()
                 }, label: { Text("Logout")
@@ -25,15 +23,20 @@ struct StationsListView: View {
                     .foregroundColor(.black)
                     .padding(.horizontal) })
                     .background(Color.yellow)
+                
+                NavigationLink(destination: StationDetailsView() )
+                { List(networkManager.stations) { station in
+                    StationsListItem(station: station)
+                } }
             }
+        }.onAppear {
+            self.networkManager.getStations()
         }
     }
 }
 
 struct StationsListView_Previews: PreviewProvider {
     static var previews: some View {
-        StationsListView().environmentObject(SessionStore())
+        StationsListView()
     }
 }
-
-

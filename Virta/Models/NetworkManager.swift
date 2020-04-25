@@ -11,6 +11,7 @@ import SwiftUI
 class NetworkManager: ObservableObject {
     
     @EnvironmentObject var session: SessionStore
+    @Published var stations = [Station]()
     
     func loginUser(username: String, password: String, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         if let url = URL(string: "https://apitest.virta.fi/v4/auth") {
@@ -39,6 +40,37 @@ class NetworkManager: ObservableObject {
                         }
                     }
                 }
+            }
+            task.resume()
+        }
+    }
+    
+    func getStations() {
+        if let url = URL(string: "https://apitest.virta.fi/v4/stations?from=160&limit=10") {
+            var mutableRequest = URLRequest(url: url)
+            mutableRequest.httpMethod = "GET"
+            mutableRequest.cachePolicy = .reloadIgnoringLocalCacheData
+            mutableRequest.timeoutInterval = 10
+            let task = URLSession.shared.dataTask(with: mutableRequest) { (data, response, error) in
+                if error == nil {
+                    let decoder = JSONDecoder()
+                    if let safeData = data {
+                        do {
+                            let stations = try decoder.decode([Station].self, from: safeData)
+                            DispatchQueue.main.async {
+                                self.stations = stations
+                            }
+                        } catch {
+                            print(error)
+                            do {
+                                let failedResult = try decoder.decode(FailedResult.self, from: safeData)
+                                print(failedResult)
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    }
+                } 
             }
             task.resume()
         }

@@ -9,9 +9,12 @@
 import SwiftUI
 
 struct StationDetailsView: View {
+    @ObservedObject var networkManager = NetworkManager()
     var body: some View {
-        VStack {
+        HStack {
             Text("Station Details View")
+        }.onAppear {
+            
         }
     }
 }
