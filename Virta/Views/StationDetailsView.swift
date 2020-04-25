@@ -6,4 +6,18 @@
 //  Copyright © 2020 Shaji Shanavas. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+
+struct StationDetailsView: View {
+    var body: some View {
+        VStack {
+            Text("Station Details View")
+        }
+    }
+}
+
+struct StationDetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        StationDetailsView().environmentObject(SessionStore())
+    }
+}

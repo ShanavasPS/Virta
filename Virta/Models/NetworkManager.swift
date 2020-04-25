@@ -6,10 +6,12 @@
 //  Copyright © 2020 Shaji Shanavas. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 class NetworkManager: ObservableObject {
-        
+    
+    @EnvironmentObject var session: SessionStore
+    
     func loginUser(username: String, password: String, completion: @escaping (Swift.Result<Bool, Error>) -> Void) {
         if let url = URL(string: "https://apitest.virta.fi/v4/auth") {
             var mutableRequest = URLRequest(url: url)

@@ -11,14 +11,18 @@ import SwiftUI
 struct StationsListView: View {
     var body: some View {
         NavigationView {
-            Text("hello world 1").navigationBarTitle("Nearby")
+            VStack {
+                Text("Stations List View").navigationBarTitle("Nearby")
+                NavigationLink(destination: StationDetailsView() )
+                { Text("Push to StationDetailsView.") }
+            }
         }
     }
 }
 
 struct StationsListView_Previews: PreviewProvider {
     static var previews: some View {
-        StationsListView()
+        StationsListView().environmentObject(SessionStore())
     }
 }
 

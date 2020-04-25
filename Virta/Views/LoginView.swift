@@ -11,7 +11,7 @@ import SwiftUI
 struct LoginView: View {
     
     @ObservedObject var networkManager = NetworkManager()
-    
+    @EnvironmentObject var session: SessionStore
     @State private var username = "candidate1@virta.global"
     @State private var password = "1Candidate!"
     @State var loggedIn = false
@@ -27,11 +27,12 @@ struct LoginView: View {
             }
             HStack {
                 Image("icLock").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
-                TextField("Password", text: $password)
+                SecureField("Password", text: $password)
                 .padding()
             }
             Button(action: {
                 self.networkManager.loginUser(username: self.username, password: self.password) { (result) in
+                    self.session.session = User(token: "")
                     self.loggedIn = (try? result.get()) ?? false
                 }
             }, label: { Text("Login")
@@ -40,14 +41,12 @@ struct LoginView: View {
                 .padding(.horizontal) })
                 .background(Color.yellow)
             Spacer()
-        }.sheet(isPresented: $loggedIn) {
-            StationsListView()
         }
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView().environmentObject(SessionStore())
     }
 }
