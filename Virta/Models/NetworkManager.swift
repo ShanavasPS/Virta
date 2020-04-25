@@ -12,7 +12,7 @@ class NetworkManager: ObservableObject {
     
     @EnvironmentObject var session: SessionStore
     
-    func loginUser(username: String, password: String, completion: @escaping (Swift.Result<Bool, Error>) -> Void) {
+    func loginUser(username: String, password: String, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         if let url = URL(string: "https://apitest.virta.fi/v4/auth") {
             var mutableRequest = URLRequest(url: url)
             mutableRequest.httpMethod = "POST"
@@ -27,7 +27,7 @@ class NetworkManager: ObservableObject {
                     if let safeData = data {
                         do {
                             let result = try decoder.decode(Result.self, from: safeData)
-                            completion(.success(true))
+                            completion(.success(result.token))
                         } catch {
                             print(error)
                             do {

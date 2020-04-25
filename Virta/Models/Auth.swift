@@ -12,6 +12,17 @@ import Combine
 class SessionStore: ObservableObject {
     var didChange = PassthroughSubject<SessionStore, Never>()
     @Published var session: User? { didSet {self.didChange.send(self) }}
+    
+    @Published var accessToken: String? = UserDefaults.standard.string(forKey: "accessToken") {
+        didSet {
+            UserDefaults.standard.set(self.accessToken, forKey: "accessToken")
+            self.didChange.send(self)
+        }
+    }
+    
+    func  resetSession() {
+        accessToken = nil
+    }
 }
 
 struct User {

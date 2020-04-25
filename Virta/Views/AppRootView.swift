@@ -14,7 +14,7 @@ struct AppRootView: View {
     
     var body: some View {
         Group {
-            if session.session != nil {
+            if session.accessToken != nil {
                 StationsListView()
             } else {
                 LoginView()

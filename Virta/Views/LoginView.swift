@@ -33,8 +33,7 @@ struct LoginView: View {
             Button(action: {
                 self.networkManager.loginUser(username: self.username, password: self.password) { (result) in
                     DispatchQueue.main.async {
-                        self.session.session = User(token: "")
-                        self.loggedIn = (try? result.get()) ?? false
+                        self.session.accessToken = try? result.get()
                     }
                 }
             }, label: { Text("Login")
