@@ -17,13 +17,16 @@ struct StationsListItem: View {
         VStack {
             HStack {
                 VStack {
-                    Text(station.name)
-                    Text(station.address ?? "")
-                }.padding(20)
-                
-                HStack {
-                    Text("80m")
-                    Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .trailing)
+                    HStack {
+                        Text(station.name)
+                        Spacer()
+                        Text("80m")
+                        Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .trailing)
+                    }
+                    HStack {
+                        Text(station.address ?? "")
+                        Spacer()
+                    }
                 }
             }
             GridView(station: station)

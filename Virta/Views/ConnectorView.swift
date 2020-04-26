@@ -29,7 +29,8 @@ struct ConnectorView: View {
                     .foregroundColor(.gray)
                     .font(.system(size: 20))
             }
-        }
+            Spacer()
+        }.padding(.trailing, 20)
         
     }
 }
