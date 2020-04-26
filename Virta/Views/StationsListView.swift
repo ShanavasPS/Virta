@@ -15,16 +15,14 @@ struct StationsListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(session.stations) { station in
-                    NavigationLink(destination: StationDetailsView(stationId: station.id) ) {
-                        StationsListItem(station: station)
-                    }
-                }.onReceive(locationManager.$location, perform: { loc in
-                        if let location = loc {
-                            self.session.getStations(location: location)
+                if !session.stations.isEmpty {
+                    List(session.stations) { station in
+                        NavigationLink(destination: StationDetailsView(stationId: station.id) ) {
+                            StationsListItem(station: station)
                         }
-                })
-                
+                    }.padding(.trailing)
+                }
+                Spacer()
                 Button(action: {
                     self.session.resetSession()
                 }, label: { Text("Logout")
@@ -33,6 +31,11 @@ struct StationsListView: View {
                     .padding(.horizontal) })
                     .background(Color.yellow)
             }
+            .onReceive(locationManager.$location, perform: { loc in
+                    if let location = loc {
+                        self.session.getStations(location: location)
+                    }
+            })
             .onAppear {
                 self.locationManager.fetchLocation()
             }.navigationBarTitle("Nearby")

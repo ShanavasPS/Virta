@@ -33,10 +33,13 @@ struct StationDetailsView: View {
                     Text("Pick a charging point")
                     Spacer()
                 }.padding(.leading)
-                List(session.station.evses) { evse in
-                    Text(String(describing: evse.id ?? 0))
-                }.colorMultiply(Color.gray).padding(.top)
+                if !session.station.evses.isEmpty {
+                    List(session.station.evses) { evse in
+                        Text(String(describing: evse.id ?? 0))
+                    }.colorMultiply(Color.gray).padding(.top)
+                }
             }
+            Spacer()
             HStack {
                 Text("Info and Help").fontWeight(.bold)
                 Spacer()
