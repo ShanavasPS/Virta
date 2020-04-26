@@ -23,6 +23,7 @@
 		0FED0D16245430A800833419 /* StationListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D15245430A800833419 /* StationListItem.swift */; };
 		0FED0D182454504900833419 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D172454504900833419 /* InfoView.swift */; };
 		0FED0D1A24546D7100833419 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D1924546D7100833419 /* LocationManager.swift */; };
+		0FED0D1C245565AD00833419 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D1B245565AD00833419 /* Loader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		0FED0D15245430A800833419 /* StationListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListItem.swift; sourceTree = "<group>"; };
 		0FED0D172454504900833419 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		0FED0D1924546D7100833419 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		0FED0D1B245565AD00833419 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				0FED0D0B24537D2800833419 /* StationDetailsView.swift */,
 				0FED0D0D2454080800833419 /* AppRootView.swift */,
 				0FED0D172454504900833419 /* InfoView.swift */,
+				0FED0D1B245565AD00833419 /* Loader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				0FED0D0E2454080800833419 /* AppRootView.swift in Sources */,
 				0FED0CE62453593800833419 /* LoginView.swift in Sources */,
 				0FED0D1A24546D7100833419 /* LocationManager.swift in Sources */,
+				0FED0D1C245565AD00833419 /* Loader.swift in Sources */,
 				0FED0D0C24537D2800833419 /* StationDetailsView.swift in Sources */,
 				0FED0D0A24537D0A00833419 /* StationsListView.swift in Sources */,
 				0FED0D102454087800833419 /* Auth.swift in Sources */,
