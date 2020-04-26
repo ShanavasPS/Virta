@@ -10,7 +10,8 @@ import SwiftUI
 
 struct StationDetailsView: View {
     @EnvironmentObject var session: SessionStore
-    var stationId: Int?
+    var stationId: Int
+    var distance: Int
     var body: some View {
         VStack {
             HStack {
@@ -25,7 +26,7 @@ struct StationDetailsView: View {
             }.padding(.leading)
             HStack {
                 Spacer()
-                Text("500m")
+                Text("\(distance) m")
                 Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
             }
             VStack {
@@ -67,6 +68,6 @@ struct StationDetailsView: View {
 
 struct StationDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        StationDetailsView().environmentObject(SessionStore())
+        StationDetailsView(stationId: 0, distance: 0).environmentObject(SessionStore())
     }
 }

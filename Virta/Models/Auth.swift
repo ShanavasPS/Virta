@@ -54,11 +54,19 @@ class SessionStore: ObservableObject {
             DispatchQueue.main.async {
                 self.loaderVisible = false
                 if let stations = try? result.get() {
-                    self.stations = stations
                     print(stations)
+                    self.updateDistance(stations: stations, location: location)
                 }
             }
         }
+    }
+    
+    func updateDistance(stations:[Station], location: CLLocation) {
+        for index in 0..<stations.count {
+            stations[index].distance = Int(location.distance(from: CLLocation(latitude: stations[index].latitude, longitude: stations[index].longitude)).rounded())
+        }
+        
+        self.stations = stations.sorted { $0.distance < $1.distance }
     }
     
     func getStationDetails(stationId: Int) {

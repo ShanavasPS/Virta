@@ -79,7 +79,7 @@ struct ConnectorDetails: Decodable {
     let currentType: String
 }
 
-struct Station: Decodable, Identifiable {
+class Station: Decodable, Identifiable {
     let id: Int
     let latitude: Double
     let longitude: Double
@@ -91,6 +91,11 @@ struct Station: Decodable, Identifiable {
     let evses: [Evse]
     let isRemoved: Bool
     let isPrivate: Bool
+    var distance: Int = 0
+    
+    enum CodingKeys: String, CodingKey {
+        case id, latitude, longitude, icon, name, city, address, provider, evses, isRemoved, isPrivate
+    }
     
     init() {
         id = 0

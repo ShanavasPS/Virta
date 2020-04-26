@@ -7,17 +7,18 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct StationsListView: View {
     @EnvironmentObject var session: SessionStore
     @ObservedObject var locationManager = LocationManager()
-
+    
     var body: some View {
         NavigationView {
             VStack {
                 if !session.stations.isEmpty {
                     List(session.stations) { station in
-                        NavigationLink(destination: StationDetailsView(stationId: station.id) ) {
+                        NavigationLink(destination: StationDetailsView(stationId: station.id, distance: station.distance) ) {
                             StationsListItem(station: station)
                         }
                     }.padding(.trailing)
@@ -45,6 +46,6 @@ struct StationsListView: View {
 
 struct StationsListView_Previews: PreviewProvider {
     static var previews: some View {
-        StationsListView()
+        StationsListView().environmentObject(SessionStore())
     }
 }

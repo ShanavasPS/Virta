@@ -7,12 +7,13 @@
 //
 
 import SwiftUI
-
+import CoreLocation
 
 struct StationsListItem: View {
     @EnvironmentObject var session: SessionStore
 
     let station: Station
+
     var body: some View {
         VStack {
             HStack {
@@ -20,8 +21,8 @@ struct StationsListItem: View {
                     HStack {
                         Text(station.name)
                         Spacer()
-                        Text("80m")
-                        Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .trailing)
+                        Text(String(station.distance) + " m")
+                        Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
                     }
                     HStack {
                         Text(station.address ?? "")
