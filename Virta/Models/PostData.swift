@@ -46,14 +46,6 @@ struct Pricing: Decodable {
     let priceCentsVat: Double
 }
 
-struct GenericCodingKeys: CodingKey {
-    var intValue: Int?
-    var stringValue: String
-
-    init?(stringValue: String) { self.stringValue = stringValue }
-    init?(intValue: Int) { self.intValue = intValue; self.stringValue = "\(intValue)" }
-}
-
 struct EvseDetails: Decodable, Identifiable {
     let id: Int?
     let connectors: [ConnectorDetails]
@@ -95,6 +87,20 @@ struct Station: Decodable, Identifiable {
     let evses: [Evse]
     let isRemoved: Bool
     let isPrivate: Bool
+    
+    init() {
+        id = 0
+        latitude = 0.0
+        longitude = 0.0
+        icon = 0
+        name = ""
+        city = ""
+        address = ""
+        provider = ""
+        evses = []
+        isRemoved = false
+        isPrivate = false
+    }
 }
 
 struct StationDetails: Decodable, Identifiable {

@@ -11,33 +11,31 @@ import SwiftUI
 
 struct StationsListItem: View {
     @EnvironmentObject var session: SessionStore
-    
-    let station: Station?
+    var persons = ["Boris", "Anna", "Tom"]
+
+    let station: Station
     var body: some View {
         VStack {
             HStack {
                 VStack {
-                    Text(station?.name ?? "")
-                    Text(station?.address ?? "")
+                    Text(station.name)
+                    Text(station.address ?? "")
                 }.padding(20)
+                
                 HStack {
                     Text("80m")
-                    Image("logIn").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
+                    Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .trailing)
                 }
             }
-            HStack {
-                Image("logIn").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
-                VStack {
-                    Text("22")
-                    Text("KW")
-                }
-            }
+            GridView()
         }
     }
 }
 
+
+
 struct StationsListItem_Previews: PreviewProvider {
     static var previews: some View {
-        StationsListItem(station: nil).environmentObject(SessionStore())
+        StationsListItem(station: Station()).environmentObject(SessionStore())
     }
 }
