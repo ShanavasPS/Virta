@@ -54,7 +54,6 @@ class SessionStore: ObservableObject {
             DispatchQueue.main.async {
                 self.loaderVisible = false
                 if let stations = try? result.get() {
-                    print(stations)
                     self.updateDistance(stations: stations, location: location)
                 }
             }

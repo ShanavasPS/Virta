@@ -32,7 +32,6 @@ class NetworkManager: ObservableObject {
                             self.networkState = "LoggedIn"
                             completion(.success(result.token))
                         } catch {
-                            print(error)
                             completion(.failure(error))
                         }
                     }
@@ -58,7 +57,6 @@ class NetworkManager: ObservableObject {
                             let stations = try decoder.decode([Station].self, from: safeData)
                             completion(.success(stations))
                         } catch {
-                            print(error)
                             completion(.failure(error))
                         }
                     }
@@ -82,10 +80,8 @@ class NetworkManager: ObservableObject {
                     if let safeData = data {
                         do {
                             let station = try decoder.decode(StationDetails.self, from: safeData)
-                            print(station)
                             completion(.success(station))
                         } catch {
-                            print(error)
                             completion(.failure(error))
                         }
                     }
