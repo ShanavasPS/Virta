@@ -55,6 +55,7 @@ class SessionStore: ObservableObject {
                 self.loaderVisible = false
                 if let stations = try? result.get() {
                     self.stations = stations
+                    print(stations)
                 }
             }
         }

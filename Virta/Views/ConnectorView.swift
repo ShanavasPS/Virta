@@ -9,7 +9,12 @@
 import SwiftUI
 
 struct ConnectorView: View {
-        
+    let connectors: [Connector]
+    let row: Int
+    let col: Int
+    var index: Int {
+        return row + col
+    }
     var body: some View {
         HStack {
             VStack {
@@ -17,7 +22,7 @@ struct ConnectorView: View {
                 Text("x2")
             }
             VStack {
-                Text("22")
+                Text(String(self.connectors[index].maxKw))
                     .fontWeight(.bold)
                     .font(.system(size: 30))
                 Text("kW")
@@ -31,6 +36,6 @@ struct ConnectorView: View {
 
 struct ConnectorView_Previews: PreviewProvider {
     static var previews: some View {
-        ConnectorView()
+        ConnectorView(connectors: [Connector](), row: 0, col: 0)
     }
 }

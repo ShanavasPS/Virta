@@ -11,7 +11,6 @@ import SwiftUI
 
 struct StationsListItem: View {
     @EnvironmentObject var session: SessionStore
-    var persons = ["Boris", "Anna", "Tom"]
 
     let station: Station
     var body: some View {
@@ -27,7 +26,7 @@ struct StationsListItem: View {
                     Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .trailing)
                 }
             }
-            GridView()
+            GridView(station: station)
         }
     }
 }

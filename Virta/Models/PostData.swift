@@ -15,6 +15,10 @@ struct LoginData: Decodable {
 struct Connector: Decodable {
     let type: String
     let maxKw: Int
+    init() {
+        type = ""
+        maxKw = 0
+    }
 }
 
 struct Evse: Decodable {

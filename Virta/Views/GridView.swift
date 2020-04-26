@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct GridView : View {
-    var persons = [1,2,3,4,5,6,7,8]
-    let items: [String] = ["1", "2", "3", "4", "5"]
+    let station: Station
+    var items: [Connector] {
+        return station.evses.first?.connectors ?? [Connector]()
+    }
     var cols = 3
     var isLastRowFull: Bool {
         return (items.count % self.cols == 0)
@@ -27,13 +29,13 @@ struct GridView : View {
     }
     
     var body : some View {
-        GeometryReader { geometry in
+        Group {
             ScrollView {
                 VStack {
                     ForEach(0..<self.rows) { row in
                         HStack {
                             ForEach(0..<(row == self.rows - 1 ? self.lastRowCount: 3)) { column in
-                                ConnectorView()
+                                ConnectorView(connectors: self.items, row: row, col: column)
                             }
                         }
                     }
@@ -45,6 +47,6 @@ struct GridView : View {
 
 struct GridView_Previews: PreviewProvider {
     static var previews: some View {
-        GridView()
+        GridView(station: Station())
     }
 }
