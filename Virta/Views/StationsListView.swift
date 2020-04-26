@@ -11,7 +11,7 @@ import SwiftUI
 struct StationsListView: View {
     @EnvironmentObject var session: SessionStore
     @ObservedObject var locationManager = LocationManager()
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -32,6 +32,9 @@ struct StationsListView: View {
                             self.session.getStations(location: location)
                         }
                 })
+            }
+            .onAppear {
+                self.locationManager.fetchLocation()
             }.navigationBarTitle("Nearby")
         }
     }

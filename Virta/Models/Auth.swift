@@ -12,6 +12,7 @@ import CoreLocation
 
 class SessionStore: ObservableObject {
     @ObservedObject var networkManager = NetworkManager()
+
     var didChange = PassthroughSubject<SessionStore, Never>()
     
     @Published var accessToken: String? = UserDefaults.standard.string(forKey: "accessToken") {
@@ -36,14 +37,15 @@ class SessionStore: ObservableObject {
         networkManager.loginUser(username: username, password: password) { (result) in
             DispatchQueue.main.async {
                 self.accessToken = try? result.get()
-                self.loaderVisible = false
             }
         }
     }
     
     func getStations(location: CLLocation) {
+        self.loaderVisible = true
         networkManager.getStations(location: location) { (result) in
             DispatchQueue.main.async {
+                self.loaderVisible = false
                 if let stations = try? result.get() {
                     self.stations = stations
                 }
