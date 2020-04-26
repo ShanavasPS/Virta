@@ -28,17 +28,11 @@ class NetworkManager: ObservableObject {
                     let decoder = JSONDecoder()
                     if let safeData = data {
                         do {
-                            let result = try decoder.decode(Result.self, from: safeData)
+                            let result = try decoder.decode(LoginData.self, from: safeData)
                             self.networkState = "LoggedIn"
                             completion(.success(result.token))
                         } catch {
                             print(error)
-                            do {
-                                let failedResult = try decoder.decode(FailedResult.self, from: safeData)
-                                print(failedResult)
-                            } catch {
-                                print(error)
-                            }
                         }
                     }
                 }
@@ -62,12 +56,6 @@ class NetworkManager: ObservableObject {
                             completion(.success(stations))
                         } catch {
                             print(error)
-                            do {
-                                let failedResult = try decoder.decode(FailedResult.self, from: safeData)
-                                print(failedResult)
-                            } catch {
-                                print(error)
-                            }
                         }
                     }
                 } 
@@ -92,12 +80,6 @@ class NetworkManager: ObservableObject {
                             completion(.success(station))
                         } catch {
                             print(error)
-                            do {
-                                let failedResult = try decoder.decode(FailedResult.self, from: safeData)
-                                print(failedResult)
-                            } catch {
-                                print(error)
-                            }
                         }
                     }
                 }

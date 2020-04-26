@@ -8,13 +8,8 @@
 
 import Foundation
 
-struct Result: Decodable {
+struct LoginData: Decodable {
     let token: String
-}
-
-struct FailedResult: Decodable {
-    let status_code: Int
-    let message: String
 }
 
 struct Connector: Decodable {
