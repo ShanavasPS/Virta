@@ -10,23 +10,22 @@ import SwiftUI
 
 struct StationDetailsView: View {
     @EnvironmentObject var session: SessionStore
-    var stationId: Int
-    var distance: Int
+    var station: Station
     var body: some View {
         VStack {
             HStack {
-                Text(session.station.name)
+                Text(station.name)
                     .fontWeight(.bold)
                 Spacer()
                 Image("icX").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
             }.padding(.leading)
             HStack {
-                Text(session.station.address)
+                Text(station.address ?? "")
                 Spacer()
             }.padding(.leading)
             HStack {
                 Spacer()
-                Text("\(distance) m")
+                Text("\(station.distance) m")
                 Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
             }
             VStack {
@@ -38,6 +37,16 @@ struct StationDetailsView: View {
                     List(session.station.evses) { evse in
                         Text(String(describing: evse.id ?? 0))
                     }.colorMultiply(Color.gray).padding(.top)
+                } else {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Text("Failed to get charging points")
+                            Spacer()
+                        }
+                        Spacer()
+                    }.background(Color.gray)
                 }
             }
             Spacer()
@@ -61,13 +70,13 @@ struct StationDetailsView: View {
                 InfoView(image: "icFeedbackSad", title: "Report Issue", subtitle: "Something not perfect")
             }
         }.onAppear {
-            self.session.getStationDetails(stationId: self.stationId ?? 0)
+            self.session.getStationDetails(stationId: self.station.id)
         }
     }
 }
 
 struct StationDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        StationDetailsView(stationId: 0, distance: 0).environmentObject(SessionStore())
+        StationDetailsView(station: Station()).environmentObject(SessionStore())
     }
 }

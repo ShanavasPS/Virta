@@ -18,7 +18,7 @@ struct StationsListView: View {
             VStack {
                 if !session.stations.isEmpty {
                     List(session.stations) { station in
-                        NavigationLink(destination: StationDetailsView(stationId: station.id, distance: station.distance) ) {
+                        NavigationLink(destination: StationDetailsView(station: station) ) {
                             StationsListItem(station: station)
                         }
                     }.padding(.trailing)
