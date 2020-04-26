@@ -13,7 +13,6 @@ import CoreLocation
 class SessionStore: ObservableObject {
     @ObservedObject var networkManager = NetworkManager()
     var didChange = PassthroughSubject<SessionStore, Never>()
-    @Published var session: User? { didSet {self.didChange.send(self) }}
     
     @Published var accessToken: String? = UserDefaults.standard.string(forKey: "accessToken") {
         didSet {
@@ -58,13 +57,5 @@ class SessionStore: ObservableObject {
                 }
             }
         }
-    }
-}
-
-struct User {
-    var token:String?
-    
-    init(token:String) {
-        self.token = token
     }
 }
