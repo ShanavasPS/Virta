@@ -10,16 +10,24 @@ import SwiftUI
 
 struct InfoView: View {
     @EnvironmentObject var session: SessionStore
-    
+    let image:String
+    let title: String
+    let subtitle: String
     var body: some View {
         HStack {
-            Image("logIn").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding()
+            Image(image).resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.leading)
             VStack {
-                Text("How to Use")
-                Text("We are always here to help")
+                HStack {
+                    Text(title)
+                    Spacer()
+                }.padding(.leading)
+                HStack {
+                    Text(subtitle)
+                    Spacer()
+                }.padding(.leading)
             }
             Spacer()
-            Image("logIn").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
+            Image("icChevronRight").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
 
         }
     }
@@ -27,6 +35,6 @@ struct InfoView: View {
 
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoView().environmentObject(SessionStore())
+        InfoView(image: "", title: "", subtitle: "").environmentObject(SessionStore())
     }
 }

@@ -15,19 +15,47 @@ struct StationDetailsView: View {
         VStack {
             HStack {
                 Text(session.station.name)
-                Image("logIn").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
+                    .fontWeight(.bold)
+                Spacer()
+                Image("icX").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
+            }.padding(.leading)
+            HStack {
+                Text(session.station.address)
+                Spacer()
+            }.padding(.leading)
+            HStack {
+                Spacer()
+                Text("500m")
+                Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
             }
-            Text(session.station.address)
-            Text("Pick a charging point")
-            List(session.station.evses) { evse in
-                Text("hello")
+            VStack {
+                HStack {
+                    Text("Pick a charging point")
+                    Spacer()
+                }.padding(.leading)
+                List(session.station.evses) { evse in
+                    Text(String(describing: evse.id ?? 0))
+                }.colorMultiply(Color.gray).padding(.top)
             }
-            Text("Info and Help").fontWeight(.bold)
-            Text(session.station.providers ?? "")
-            Text("Provider")
-            InfoView()
-            InfoView()
-            Spacer()
+            HStack {
+                Text("Info and Help").fontWeight(.bold)
+                Spacer()
+            }.padding()
+            
+            HStack {
+                Text(session.station.providers ?? "")
+                Spacer()
+            }.padding(.leading)
+            
+            HStack {
+                Text("Provider")
+                Spacer()
+            }.padding(.leading)
+            
+            VStack {
+                InfoView(image: "icInfo", title: "How to Use", subtitle: "We are always here to help")
+                InfoView(image: "icFeedbackSad", title: "Report Issue", subtitle: "Something not perfect")
+            }
         }.onAppear {
             self.session.getStationDetails(stationId: self.stationId ?? 0)
         }
