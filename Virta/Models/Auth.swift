@@ -57,9 +57,9 @@ class SessionStore: ObservableObject {
         loaderVisible = true
         networkManager.getStationDetails(stationId: stationId) { (result) in
             DispatchQueue.main.async {
+                self.loaderVisible = false
                 if let station = try? result.get() {
                     self.station = station
-                    self.loaderVisible = false
                 }
             }
         }

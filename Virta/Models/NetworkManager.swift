@@ -33,6 +33,7 @@ class NetworkManager: ObservableObject {
                             completion(.success(result.token))
                         } catch {
                             print(error)
+                            completion(.failure(error))
                         }
                     }
                 }
@@ -56,6 +57,7 @@ class NetworkManager: ObservableObject {
                             completion(.success(stations))
                         } catch {
                             print(error)
+                            completion(.failure(error))
                         }
                     }
                 } 
@@ -80,6 +82,7 @@ class NetworkManager: ObservableObject {
                             completion(.success(station))
                         } catch {
                             print(error)
+                            completion(.failure(error))
                         }
                     }
                 }

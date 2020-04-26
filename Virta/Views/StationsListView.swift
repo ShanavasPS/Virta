@@ -15,14 +15,6 @@ struct StationsListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Button(action: {
-                    self.session.resetSession()
-                }, label: { Text("Logout")
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
-                    .padding(.horizontal) })
-                    .background(Color.yellow)
-                
                 List(session.stations) { station in
                     NavigationLink(destination: StationDetailsView(stationId: station.id) ) {
                         StationsListItem(station: station)
@@ -32,6 +24,14 @@ struct StationsListView: View {
                             self.session.getStations(location: location)
                         }
                 })
+                
+                Button(action: {
+                    self.session.resetSession()
+                }, label: { Text("Logout")
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .padding(.horizontal) })
+                    .background(Color.yellow)
             }
             .onAppear {
                 self.locationManager.fetchLocation()
