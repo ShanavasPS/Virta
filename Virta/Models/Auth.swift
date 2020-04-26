@@ -54,6 +54,7 @@ class SessionStore: ObservableObject {
     }
     
     func getStationDetails(stationId: Int) {
+        station = StationDetails()
         loaderVisible = true
         networkManager.getStationDetails(stationId: stationId) { (result) in
             DispatchQueue.main.async {
