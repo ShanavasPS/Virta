@@ -15,17 +15,25 @@ struct LoginView: View {
     @State private var showingAlert = false
     var body: some View {
         VStack {
-            Text("Log In and Charge!").fontWeight(.bold)
+            Text("Log In and Charge!").fontWeight(.bold).padding()
             Image("logIn").resizable().aspectRatio(contentMode: .fit).frame(width: 150, height: 150, alignment: .center)
-            HStack {
-                Image("icPerson").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
-                TextField("Username", text: $username)
-                .padding()
+            VStack {
+                HStack {
+                    Image("icPerson").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.leading)
+                    TextField("Username", text: $username)
+                }
+                Divider()
+                    .padding(.leading)
+                    .padding(.trailing)
             }
-            HStack {
-                Image("icLock").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
-                SecureField("Password", text: $password)
-                .padding()
+            VStack {
+                HStack {
+                    Image("icLock").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.leading)
+                    SecureField("Password", text: $password)
+                }.padding(.top)
+                Divider()
+                    .padding(.leading)
+                    .padding(.trailing)
             }
             Button(action: {
                 self.session.loginUser(username: self.username, password: self.password)
@@ -34,6 +42,7 @@ struct LoginView: View {
                 .foregroundColor(.black)
                 .padding(.horizontal) })
                 .background(Color.yellow)
+                .padding(40)
             Spacer()
         }
         .onReceive(session.$loginFailed, perform: { loginFailed in
