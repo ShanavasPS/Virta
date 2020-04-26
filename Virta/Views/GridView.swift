@@ -30,13 +30,11 @@ struct GridView : View {
     
     var body : some View {
         Group {
-            ScrollView {
-                VStack {
-                    ForEach(0..<self.rows) { row in
-                        HStack {
-                            ForEach(0..<(row == self.rows - 1 ? self.lastRowCount: 3)) { column in
-                                ConnectorView(connectors: self.items, row: row, col: column)
-                            }
+            VStack {
+                ForEach(0..<self.rows) { row in
+                    HStack {
+                        ForEach(0..<(row == self.rows - 1 ? self.lastRowCount: 3)) { column in
+                            ConnectorView(connectors: self.items, row: row, col: column)
                         }
                     }
                 }
