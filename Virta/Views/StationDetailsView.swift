@@ -9,27 +9,27 @@
 import SwiftUI
 
 struct StationDetailsView: View {
-    @ObservedObject var networkManager = NetworkManager()
+    @EnvironmentObject var session: SessionStore
     var stationId: Int?
     var body: some View {
         VStack {
             HStack {
-                Text(networkManager.station.name)
+                Text(session.station.name)
                 Image("logIn").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
             }
-            Text(networkManager.station.address)
+            Text(session.station.address)
             Text("Pick a charging point")
-            List(networkManager.station.evses) { evse in
+            List(session.station.evses) { evse in
                 Text("hello")
             }
             Text("Info and Help").fontWeight(.bold)
-            Text(networkManager.station.providers ?? "")
+            Text(session.station.providers ?? "")
             Text("Provider")
             InfoView()
             InfoView()
             Spacer()
         }.onAppear {
-            self.networkManager.getStationDetails(stationId: self.stationId ?? 0)
+            self.session.getStationDetails(stationId: self.stationId ?? 0)
         }
     }
 }

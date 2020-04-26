@@ -10,7 +10,6 @@ import SwiftUI
 
 struct StationsListView: View {
     @EnvironmentObject var session: SessionStore
-    @ObservedObject var networkManager = NetworkManager()
     @ObservedObject var locationManager = LocationManager()
     
     var body: some View {
@@ -24,13 +23,13 @@ struct StationsListView: View {
                     .padding(.horizontal) })
                     .background(Color.yellow)
                 
-                List(networkManager.stations) { station in
+                List(session.stations) { station in
                     NavigationLink(destination: StationDetailsView(stationId: station.id) ) {
                         StationsListItem(station: station)
                     }
                 }.onReceive(locationManager.$location, perform: { loc in
                         if let location = loc {
-                            self.networkManager.getStations(location: location)
+                            self.session.getStations(location: location)
                         }
                 })
             }.navigationBarTitle("Nearby")

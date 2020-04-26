@@ -12,7 +12,7 @@ import CoreLocation
 class NetworkManager: ObservableObject {
     @Published var networkState = ""
     @Published var stations = [Station]()
-    @Published var station = StationDetails(id: 0, name: "", latitude: 0.0, longitude: 0.0, icon: 0, address: "", city: "", openHours: "", providers: "", evses: [])
+    @Published var station = StationDetails()
 
     func loginUser(username: String, password: String, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         if let url = URL(string: "https://apitest.virta.fi/v4/auth") {
@@ -47,7 +47,7 @@ class NetworkManager: ObservableObject {
         }
     }
     
-    func getStations(location: CLLocation) {
+    func getStations(location: CLLocation, completion: @escaping (Swift.Result<[Station], Error>) -> Void) {
         if let url = URL(string: "https://apitest.virta.fi/v4/stations?latMin=\(location.latitude)&longMin=\(location.longitude)&latMax=\(location.latitude + 0.0300)&longMax=\(location.longitude + 0.0300)&limit=10") {
             var mutableRequest = URLRequest(url: url)
             mutableRequest.httpMethod = "GET"
@@ -59,10 +59,7 @@ class NetworkManager: ObservableObject {
                     if let safeData = data {
                         do {
                             let stations = try decoder.decode([Station].self, from: safeData)
-                            DispatchQueue.main.async {
-                                self.stations = stations
-                                self.networkState = "Stations listed"
-                            }
+                            completion(.success(stations))
                         } catch {
                             print(error)
                             do {
@@ -79,7 +76,7 @@ class NetworkManager: ObservableObject {
         }
     }
     
-    func getStationDetails(stationId: Int) {
+    func getStationDetails(stationId: Int, completion: @escaping (Swift.Result<StationDetails, Error>) -> Void) {
         if let url = URL(string: "https://apitest.virta.fi/v4/stations/\(stationId)") {
             var mutableRequest = URLRequest(url: url)
             mutableRequest.httpMethod = "GET"
@@ -92,9 +89,7 @@ class NetworkManager: ObservableObject {
                         do {
                             let station = try decoder.decode(StationDetails.self, from: safeData)
                             print(station)
-                            DispatchQueue.main.async {
-                                self.station = station
-                            }
+                            completion(.success(station))
                         } catch {
                             print(error)
                             do {

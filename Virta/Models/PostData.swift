@@ -74,7 +74,7 @@ struct EvseDetails: Decodable, Identifiable {
     let status: Int
     let oneTimeMinimum: Int
     let oneTimePricing: [Pricing]
-    let oneTimePricingRatio: Int
+    let oneTimePricingRatio: Double
     let minutesWithoutTimeCharge: Int
     let isFree: Bool
     let evseId: String
@@ -83,8 +83,8 @@ struct EvseDetails: Decodable, Identifiable {
 struct ConnectorDetails: Decodable {
     let connectorID: Int
     let type: String
-    let maxKwh: Int
-    let maxKw: Int
+    let maxKwh: Double
+    let maxKw: Double
     let currentType: String
 }
 
@@ -113,4 +113,17 @@ struct StationDetails: Decodable, Identifiable {
     let openHours: String?
     let providers: String?
     let evses: [EvseDetails]
+    
+    init() {
+        id = 0
+        name = ""
+        latitude = 0.0
+        longitude = 0.0
+        icon = 0
+        address = ""
+        city = ""
+        openHours = ""
+        providers = ""
+        evses = []
+    }
 }

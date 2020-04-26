@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct LoginView: View {
-    
-    @ObservedObject var networkManager = NetworkManager()
     @EnvironmentObject var session: SessionStore
     @State private var username = "candidate1@virta.global"
     @State private var password = "1Candidate!"
@@ -31,11 +29,7 @@ struct LoginView: View {
                 .padding()
             }
             Button(action: {
-                self.networkManager.loginUser(username: self.username, password: self.password) { (result) in
-                    DispatchQueue.main.async {
-                        self.session.accessToken = try? result.get()
-                    }
-                }
+                self.session.loginUser(username: self.username, password: self.password)
             }, label: { Text("Login")
                 .fontWeight(.bold)
                 .foregroundColor(.black)

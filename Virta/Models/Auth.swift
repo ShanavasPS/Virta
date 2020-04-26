@@ -8,8 +8,10 @@
 
 import SwiftUI
 import Combine
+import CoreLocation
 
 class SessionStore: ObservableObject {
+    @ObservedObject var networkManager = NetworkManager()
     var didChange = PassthroughSubject<SessionStore, Never>()
     @Published var session: User? { didSet {self.didChange.send(self) }}
     
@@ -20,10 +22,42 @@ class SessionStore: ObservableObject {
         }
     }
     
+    @Published var stations = [Station]() { didSet {self.didChange.send(self) }}
+    
+    @Published var station = StationDetails() { didSet {self.didChange.send(self) }}
+
     var selectedStation: Station?
     
     func  resetSession() {
         accessToken = nil
+    }
+    
+    func loginUser(username: String, password: String) {
+        networkManager.loginUser(username: username, password: password) { (result) in
+            DispatchQueue.main.async {
+                self.accessToken = try? result.get()
+            }
+        }
+    }
+    
+    func getStations(location: CLLocation) {
+        networkManager.getStations(location: location) { (result) in
+            if let stations = try? result.get() {
+                DispatchQueue.main.async {
+                    self.stations = stations
+                }
+            }
+        }
+    }
+    
+    func getStationDetails(stationId: Int) {
+        networkManager.getStationDetails(stationId: stationId) { (result) in
+            if let station = try? result.get() {
+                DispatchQueue.main.async {
+                    self.station = station
+                }
+            }
+        }
     }
 }
 
