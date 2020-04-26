@@ -28,6 +28,8 @@ class SessionStore: ObservableObject {
     
     @Published var loaderVisible = false { didSet {self.didChange.send(self) }}
     
+    @Published var loginFailed = false { didSet {self.didChange.send(self) }}
+    
     func  resetSession() {
         accessToken = nil
     }
@@ -36,7 +38,12 @@ class SessionStore: ObservableObject {
         loaderVisible = true
         networkManager.loginUser(username: username, password: password) { (result) in
             DispatchQueue.main.async {
-                self.accessToken = try? result.get()
+                if let accessToken = try? result.get() {
+                    self.accessToken = accessToken
+                } else {
+                    self.loginFailed = true
+                    self.loaderVisible = false
+                }
             }
         }
     }

@@ -12,8 +12,7 @@ struct LoginView: View {
     @EnvironmentObject var session: SessionStore
     @State private var username = "candidate1@virta.global"
     @State private var password = "1Candidate!"
-    @State var loggedIn = false
-    
+    @State private var showingAlert = false
     var body: some View {
         VStack {
             Text("Log In and Charge!").fontWeight(.bold)
@@ -36,6 +35,12 @@ struct LoginView: View {
                 .padding(.horizontal) })
                 .background(Color.yellow)
             Spacer()
+        }
+        .onReceive(session.$loginFailed, perform: { loginFailed in
+            self.showingAlert = loginFailed
+        })
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("Warning"), message: Text("Wrong username or password"), dismissButton: .default(Text("OK!")))
         }
     }
 }
