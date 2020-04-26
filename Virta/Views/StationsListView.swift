@@ -13,11 +13,9 @@ struct StationsListView: View {
     @ObservedObject var networkManager = NetworkManager()
     @ObservedObject var locationManager = LocationManager()
     
-    var stationCount: String  { return("\(networkManager.networkState)") }
     var body: some View {
         NavigationView {
             VStack {
-                Text("stationCount: \(self.stationCount)")
                 Button(action: {
                     self.session.resetSession()
                 }, label: { Text("Logout")

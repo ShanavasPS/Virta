@@ -61,7 +61,6 @@ class NetworkManager: ObservableObject {
                             let stations = try decoder.decode([Station].self, from: safeData)
                             DispatchQueue.main.async {
                                 self.stations = stations
-                                print(self.stations.count)
                                 self.networkState = "Stations listed"
                             }
                         } catch {
