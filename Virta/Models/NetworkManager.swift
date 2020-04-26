@@ -36,6 +36,8 @@ class NetworkManager: ObservableObject {
                             completion(.failure(error))
                         }
                     }
+                } else {
+                    completion(.failure(error!))
                 }
             }
             task.resume()
@@ -60,7 +62,9 @@ class NetworkManager: ObservableObject {
                             completion(.failure(error))
                         }
                     }
-                } 
+                } else {
+                    completion(.failure(error!))
+                }
             }
             task.resume()
         }
@@ -85,6 +89,8 @@ class NetworkManager: ObservableObject {
                             completion(.failure(error))
                         }
                     }
+                } else {
+                    completion(.failure(error!))
                 }
             }
             task.resume()
