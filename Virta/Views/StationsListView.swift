@@ -29,7 +29,8 @@ struct StationsListView: View {
                 }, label: { Text("Logout")
                     .fontWeight(.bold)
                     .foregroundColor(.black)
-                    .padding(.horizontal) })
+                    .padding(.horizontal, 40)
+                    .padding(.vertical, 10) })
                     .background(Color.yellow)
             }
             .onReceive(locationManager.$location, perform: { loc in

@@ -18,7 +18,7 @@ struct StationDetailsView: View {
                 Text(session.station.name)
                     .fontWeight(.bold)
                 Spacer()
-                Image("icX").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
+                Image("icX").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
             }.padding(.leading)
             HStack {
                 Text(session.station.address)

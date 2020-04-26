@@ -37,10 +37,12 @@ struct LoginView: View {
             }
             Button(action: {
                 self.session.loginUser(username: self.username, password: self.password)
-            }, label: { Text("Login")
+            }, label: { Text("Log in")
                 .fontWeight(.bold)
                 .foregroundColor(.black)
-                .padding(.horizontal) })
+                .padding(.horizontal, 40)
+                .padding(.vertical, 10)
+            })
                 .background(Color.yellow)
                 .padding(40)
             Spacer()
