@@ -30,7 +30,7 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.distanceFilter = 100
-        self.locationManager.startUpdatingLocation()
+        self.locationManager.startMonitoringSignificantLocationChanges()
     }
 }
 
@@ -41,7 +41,11 @@ extension LocationManager: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-        self.location = location
+        if self.location?.latitude != location.latitude {
+            self.location = location
+            print("location fetched")
+            
+        }
     }
 }
 

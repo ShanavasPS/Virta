@@ -24,25 +24,27 @@ class SessionStore: ObservableObject {
     @Published var stations = [Station]() { didSet {self.didChange.send(self) }}
     
     @Published var station = StationDetails() { didSet {self.didChange.send(self) }}
-
-    var selectedStation: Station?
+    
+    @Published var loaderVisible = false { didSet {self.didChange.send(self) }}
     
     func  resetSession() {
         accessToken = nil
     }
     
     func loginUser(username: String, password: String) {
+        loaderVisible = true
         networkManager.loginUser(username: username, password: password) { (result) in
             DispatchQueue.main.async {
                 self.accessToken = try? result.get()
+                self.loaderVisible = false
             }
         }
     }
     
     func getStations(location: CLLocation) {
         networkManager.getStations(location: location) { (result) in
-            if let stations = try? result.get() {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if let stations = try? result.get() {
                     self.stations = stations
                 }
             }
@@ -50,10 +52,12 @@ class SessionStore: ObservableObject {
     }
     
     func getStationDetails(stationId: Int) {
+        loaderVisible = true
         networkManager.getStationDetails(stationId: stationId) { (result) in
-            if let station = try? result.get() {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if let station = try? result.get() {
                     self.station = station
+                    self.loaderVisible = false
                 }
             }
         }

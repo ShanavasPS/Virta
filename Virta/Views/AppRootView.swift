@@ -12,11 +12,16 @@ struct AppRootView: View {
 
     @EnvironmentObject var session: SessionStore
     var body: some View {
-        Group {
+        ZStack {
             if session.accessToken != nil {
                 StationsListView()
             } else {
                 LoginView()
+            }
+            if session.loaderVisible {
+                GeometryReader {_ in
+                    Loader()
+                }.background(Color.black.opacity(0.45).edgesIgnoringSafeArea(.all))
             }
         }
     }
