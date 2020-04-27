@@ -11,6 +11,8 @@ import MapKit
 
 struct StationDetailsView: View {
     @EnvironmentObject var session: SessionStore
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    
     @State private var showingAlert = false
     let mapManager = MapManager()
     
@@ -21,7 +23,13 @@ struct StationDetailsView: View {
                 Text(station.name)
                     .fontWeight(.bold)
                 Spacer()
-                Image("icX").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
+                Button(action: {
+                    self.mode.wrappedValue.dismiss()
+                }) {
+                    Image("icX").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
+                }
+                .buttonStyle(PlainButtonStyle())
+                
             }.padding(.leading)
             HStack {
                 Text(station.address ?? "")
@@ -37,7 +45,6 @@ struct StationDetailsView: View {
                     Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
                 }
                 .buttonStyle(PlainButtonStyle())
-                
             }
             VStack {
                 HStack {

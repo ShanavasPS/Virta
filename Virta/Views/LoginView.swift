@@ -36,6 +36,7 @@ struct LoginView: View {
                     .padding(.trailing)
             }
             Button(action: {
+                UIApplication.shared.endEditing()
                 self.session.loginUser(username: self.username, password: self.password)
             }, label: { Text("Log in")
                 .fontWeight(.bold)
@@ -60,5 +61,12 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView().environmentObject(SessionStore())
+    }
+}
+
+// extension for keyboard to dismiss
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
