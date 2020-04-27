@@ -28,6 +28,8 @@
 		0FED0D202455CCA200833419 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D1F2455CCA200833419 /* GridView.swift */; };
 		0FED0D222456B2B600833419 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D212456B2B600833419 /* MapManager.swift */; };
 		0FED0D2424570AB700833419 /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D2324570AB700833419 /* DirectionsView.swift */; };
+		0FED0D2824570D9900833419 /* LeftAlignedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D2724570D9900833419 /* LeftAlignedTextView.swift */; };
+		0FED0D2A2457198000833419 /* LeftAlignedBoldTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D292457198000833419 /* LeftAlignedBoldTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		0FED0D1F2455CCA200833419 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		0FED0D212456B2B600833419 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		0FED0D2324570AB700833419 /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
+		0FED0D2724570D9900833419 /* LeftAlignedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedTextView.swift; sourceTree = "<group>"; };
+		0FED0D292457198000833419 /* LeftAlignedBoldTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedBoldTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,8 @@
 				0FED0D1D2455BEAF00833419 /* ConnectorView.swift */,
 				0FED0D1F2455CCA200833419 /* GridView.swift */,
 				0FED0D2324570AB700833419 /* DirectionsView.swift */,
+				0FED0D2724570D9900833419 /* LeftAlignedTextView.swift */,
+				0FED0D292457198000833419 /* LeftAlignedBoldTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -275,12 +281,14 @@
 				0FED0CE42453593800833419 /* SceneDelegate.swift in Sources */,
 				0FED0D0E2454080800833419 /* AppRootView.swift in Sources */,
 				0FED0D2424570AB700833419 /* DirectionsView.swift in Sources */,
+				0FED0D2A2457198000833419 /* LeftAlignedBoldTextView.swift in Sources */,
 				0FED0CE62453593800833419 /* LoginView.swift in Sources */,
 				0FED0D1A24546D7100833419 /* LocationManager.swift in Sources */,
 				0FED0D1C245565AD00833419 /* Loader.swift in Sources */,
 				0FED0D1E2455BEAF00833419 /* ConnectorView.swift in Sources */,
 				0FED0D0C24537D2800833419 /* StationDetailsView.swift in Sources */,
 				0FED0D0A24537D0A00833419 /* StationsListView.swift in Sources */,
+				0FED0D2824570D9900833419 /* LeftAlignedTextView.swift in Sources */,
 				0FED0D202455CCA200833419 /* GridView.swift in Sources */,
 				0FED0D102454087800833419 /* Auth.swift in Sources */,
 			);

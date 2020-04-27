@@ -17,14 +17,8 @@ struct InfoView: View {
         HStack {
             Image(image).resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.leading)
             VStack {
-                HStack {
-                    Text(title)
-                    Spacer()
-                }.padding(.leading)
-                HStack {
-                    Text(subtitle)
-                    Spacer()
-                }.padding(.leading)
+                LeftAlignedTextView(text: title)
+                LeftAlignedTextView(text: subtitle)
             }
             Spacer()
             Image("icChevronRight").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)

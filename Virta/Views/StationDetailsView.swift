@@ -18,27 +18,20 @@ struct StationDetailsView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(station.name)
-                    .fontWeight(.bold)
-                Spacer()
+                LeftAlignedBoldTextView(text: self.station.name)
                 Button(action: {
                     self.mode.wrappedValue.dismiss()
                 }) {
                     Image("icX").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
                 }
                 .buttonStyle(PlainButtonStyle())
-            }.padding(.leading)
-                .padding(.top, 5)
-            HStack {
-                Text(station.address ?? "")
-                Spacer()
-            }.padding(.leading)
+            }.padding(.top, 5)
+            
+            LeftAlignedTextView(text: station.address ?? "")
             DirectionsView(name: self.station.name, latitude: self.station.latitude, longitude: self.station.longitude, distance: self.station.distance)
+            
             VStack {
-                HStack {
-                    Text("Pick a charging point").padding(.bottom, 5)
-                    Spacer()
-                }.padding(.leading)
+                LeftAlignedTextView(text: "Pick a charging point").padding(.bottom, 5)
                 if !session.station.evses.isEmpty {
                     List(session.station.evses) { evse in
                         ZStack {
@@ -57,7 +50,6 @@ struct StationDetailsView: View {
                         Spacer()
                         HStack {
                             Spacer()
-                            
                             Spacer()
                         }
                         Spacer()
@@ -71,20 +63,10 @@ struct StationDetailsView: View {
                     Alert(title: Text("Warning"), message: Text("Failed to get station details"), dismissButton: .default(Text("OK!")) {self.session.serviceFailed = false})
             }
             Spacer()
-            HStack {
-                Text("Info and Help").fontWeight(.bold)
-                Spacer()
-            }.padding()
             
-            HStack {
-                Text(session.station.providers ?? "")
-                Spacer()
-            }.padding(.leading)
-            
-            HStack {
-                Text("Provider")
-                Spacer()
-            }.padding(.leading)
+            LeftAlignedBoldTextView(text: "Info and Help")
+            LeftAlignedTextView(text: session.station.providers ?? "")
+            LeftAlignedTextView(text: "Provider")
             
             VStack {
                 InfoView(image: "icInfo", title: "How to Use", subtitle: "We are always here to help")
