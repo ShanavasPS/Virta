@@ -34,12 +34,12 @@ struct StationsListView: View {
                     .background(Color.yellow)
             }
             .onReceive(locationManager.$location, perform: { loc in
-                    if let location = loc {
-                        self.session.getStations(location: location)
-                    }
+                if let location = loc {
+                    self.session.getStations(location: location)
+                }
             })
-            .onAppear {
-                self.locationManager.fetchLocation()
+                .onAppear {
+                    self.locationManager.fetchLocation()
             }.navigationBarTitle("Nearby")
         }
     }

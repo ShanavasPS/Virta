@@ -33,7 +33,7 @@ struct StationDetailsView: View {
                     self.mapManager.showNavigation(name: self.station.name, latitude: self.station.latitude, longitude: self.station.longitude)
                 }) {
                     Text("\(station.distance) m")
-                    .foregroundColor(.black)
+                        .foregroundColor(.black)
                     Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -71,8 +71,8 @@ struct StationDetailsView: View {
             }.onReceive(session.$serviceFailed, perform: { loginFailed in
                 self.showingAlert = loginFailed
             })
-            .alert(isPresented: $showingAlert) {
-                Alert(title: Text("Warning"), message: Text("Failed to get station details"), dismissButton: .default(Text("OK!")) {self.session.serviceFailed = false})
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Warning"), message: Text("Failed to get station details"), dismissButton: .default(Text("OK!")) {self.session.serviceFailed = false})
             }
             Spacer()
             HStack {

@@ -14,7 +14,7 @@ struct StationsListItem: View {
     let mapManager = MapManager()
     
     let station: Station
-
+    
     var body: some View {
         VStack {
             HStack {

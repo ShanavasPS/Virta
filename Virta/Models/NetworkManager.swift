@@ -13,7 +13,7 @@ class NetworkManager: ObservableObject {
     @Published var networkState = ""
     @Published var stations = [Station]()
     @Published var station = StationDetails()
-
+    
     func loginUser(username: String, password: String, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         if let url = URL(string: "https://apitest.virta.fi/v4/auth") {
             var mutableRequest = URLRequest(url: url)

@@ -28,7 +28,7 @@ struct InfoView: View {
             }
             Spacer()
             Image("icChevronRight").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
-
+            
         }
     }
 }

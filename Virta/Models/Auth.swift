@@ -12,7 +12,7 @@ import CoreLocation
 
 class SessionStore: ObservableObject {
     @ObservedObject var networkManager = NetworkManager()
-
+    
     var didChange = PassthroughSubject<SessionStore, Never>()
     
     @Published var accessToken: String? = UserDefaults.standard.string(forKey: "accessToken") {
