@@ -8,7 +8,7 @@
 
 import SwiftUI
 import CoreLocation
-
+import MapKit
 struct StationsListItem: View {
     @EnvironmentObject var session: SessionStore
 
@@ -21,8 +21,17 @@ struct StationsListItem: View {
                     HStack {
                         Text(station.name)
                         Spacer()
-                        Text(String(station.distance) + " m")
-                        Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
+                        
+                        Button(action: {
+                            let coordinate = CLLocationCoordinate2DMake(self.station.latitude, self.station.longitude)
+                            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
+                            mapItem.name = self.station.name
+                            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+                        }) {
+                            Text(String(station.distance) + " m")
+                            Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
                     HStack {
                         Text(station.address ?? "")

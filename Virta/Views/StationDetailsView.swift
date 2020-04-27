@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct StationDetailsView: View {
     @EnvironmentObject var session: SessionStore
@@ -26,12 +27,22 @@ struct StationDetailsView: View {
             }.padding(.leading)
             HStack {
                 Spacer()
-                Text("\(station.distance) m")
-                Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
+                Button(action: {
+                    let coordinate = CLLocationCoordinate2DMake(self.station.latitude, self.station.longitude)
+                    let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
+                    mapItem.name = self.station.name
+                    mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+                }) {
+                    Text("\(station.distance) m")
+                    .foregroundColor(.black)
+                    Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
+                }
+                .buttonStyle(PlainButtonStyle())
+                
             }
             VStack {
                 HStack {
-                    Text("Pick a charging point")
+                    Text("Pick a charging point").padding(.bottom, 5)
                     Spacer()
                 }.padding(.leading)
                 if !session.station.evses.isEmpty {

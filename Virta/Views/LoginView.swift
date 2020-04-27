@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+import MapKit
 struct LoginView: View {
     @EnvironmentObject var session: SessionStore
     @State private var username = "candidate1@virta.global"
@@ -51,7 +51,8 @@ struct LoginView: View {
             self.showingAlert = serviceFailed
         })
         .alert(isPresented: $showingAlert) {
-            Alert(title: Text("Warning"), message: Text("Wrong username or password"), dismissButton: .default(Text("OK!")){self.session.serviceFailed = false})
+            Alert(title: Text("Warning"), message: Text("Wrong username or password"), dismissButton: .default(Text("OK!")) {
+                self.session.serviceFailed = false })
         }
     }
 }
