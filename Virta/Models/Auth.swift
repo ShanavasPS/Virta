@@ -28,7 +28,7 @@ class SessionStore: ObservableObject {
     
     @Published var loaderVisible = false { didSet {self.didChange.send(self) }}
     
-    @Published var loginFailed = false { didSet {self.didChange.send(self) }}
+    @Published var serviceFailed = false { didSet {self.didChange.send(self) }}
     
     func  resetSession() {
         accessToken = nil
@@ -41,7 +41,7 @@ class SessionStore: ObservableObject {
                 if let accessToken = try? result.get() {
                     self.accessToken = accessToken
                 } else {
-                    self.loginFailed = true
+                    self.serviceFailed = true
                     self.loaderVisible = false
                 }
             }
@@ -76,7 +76,9 @@ class SessionStore: ObservableObject {
                 self.loaderVisible = false
                 if let station = try? result.get() {
                     self.station = station
-                } 
+                } else {
+                    self.serviceFailed = true
+                }
             }
         }
     }

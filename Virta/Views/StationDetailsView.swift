@@ -10,6 +10,7 @@ import SwiftUI
 
 struct StationDetailsView: View {
     @EnvironmentObject var session: SessionStore
+    @State private var showingAlert = false
     var station: Station
     var body: some View {
         VStack {
@@ -51,16 +52,17 @@ struct StationDetailsView: View {
                         Spacer()
                         HStack {
                             Spacer()
-                            if session.station.id != nil {
-                                Text("Loading points....")
-                            } else {
-                                 Text("Failed to load points....")
-                            }
+                            
                             Spacer()
                         }
                         Spacer()
                     }.background(Color.gray)
                 }
+            }.onReceive(session.$serviceFailed, perform: { loginFailed in
+                self.showingAlert = loginFailed
+            })
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("Warning"), message: Text("Failed to get station details"), dismissButton: .default(Text("OK!")) {self.session.serviceFailed = false})
             }
             Spacer()
             HStack {

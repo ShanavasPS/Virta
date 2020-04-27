@@ -47,11 +47,11 @@ struct LoginView: View {
                 .padding(40)
             Spacer()
         }
-        .onReceive(session.$loginFailed, perform: { loginFailed in
-            self.showingAlert = loginFailed
+        .onReceive(session.$serviceFailed, perform: { serviceFailed in
+            self.showingAlert = serviceFailed
         })
         .alert(isPresented: $showingAlert) {
-            Alert(title: Text("Warning"), message: Text("Wrong username or password"), dismissButton: .default(Text("OK!")))
+            Alert(title: Text("Warning"), message: Text("Wrong username or password"), dismissButton: .default(Text("OK!")){self.session.serviceFailed = false})
         }
     }
 }
