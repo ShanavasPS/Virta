@@ -35,14 +35,27 @@ struct StationDetailsView: View {
                 }.padding(.leading)
                 if !session.station.evses.isEmpty {
                     List(session.station.evses) { evse in
-                        Text(String(describing: evse.id ?? 0))
+                        ZStack {
+                            HStack {
+                                Text(String(describing: evse.id ?? 0))
+                                    .foregroundColor(.green)
+                                    .padding(8)
+                                    .font(.system(size: 20))
+                                    .border(Color.green, width: 5).padding(.leading)
+                                Spacer()
+                            }
+                        }
                     }.colorMultiply(Color.gray).padding(.top)
                 } else {
                     VStack {
                         Spacer()
                         HStack {
                             Spacer()
-                            Text("Failed to get charging points")
+                            if session.station.id != nil {
+                                Text("Loading points....")
+                            } else {
+                                 Text("Failed to load points....")
+                            }
                             Spacer()
                         }
                         Spacer()

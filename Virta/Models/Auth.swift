@@ -76,7 +76,7 @@ class SessionStore: ObservableObject {
                 self.loaderVisible = false
                 if let station = try? result.get() {
                     self.station = station
-                }
+                } 
             }
         }
     }
