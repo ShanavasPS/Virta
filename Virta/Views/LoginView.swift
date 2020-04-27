@@ -10,8 +10,8 @@ import SwiftUI
 import MapKit
 struct LoginView: View {
     @EnvironmentObject var session: SessionStore
-    @State private var username = "candidate1@virta.global"
-    @State private var password = "1Candidate!"
+    @State private var username = ""
+    @State private var password = ""
     @State private var showingAlert = false
     var body: some View {
         VStack {
