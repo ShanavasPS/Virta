@@ -29,8 +29,8 @@ struct StationDetailsView: View {
                     Image("icX").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
                 }
                 .buttonStyle(PlainButtonStyle())
-                
             }.padding(.leading)
+                .padding(.top, 5)
             HStack {
                 Text(station.address ?? "")
                 Spacer()
@@ -75,7 +75,8 @@ struct StationDetailsView: View {
                         Spacer()
                     }.background(Color.gray)
                 }
-            }.onReceive(session.$serviceFailed, perform: { loginFailed in
+            }
+            .onReceive(session.$serviceFailed, perform: { loginFailed in
                 self.showingAlert = loginFailed
             })
                 .alert(isPresented: $showingAlert) {
@@ -103,7 +104,7 @@ struct StationDetailsView: View {
             }
         }.onAppear {
             self.session.getStationDetails(stationId: self.station.id)
-        }
+        }.navigationBarTitle("", displayMode: .inline)
     }
 }
 
