@@ -27,6 +27,7 @@
 		0FED0D1E2455BEAF00833419 /* ConnectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D1D2455BEAF00833419 /* ConnectorView.swift */; };
 		0FED0D202455CCA200833419 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D1F2455CCA200833419 /* GridView.swift */; };
 		0FED0D222456B2B600833419 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D212456B2B600833419 /* MapManager.swift */; };
+		0FED0D2424570AB700833419 /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FED0D2324570AB700833419 /* DirectionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		0FED0D1D2455BEAF00833419 /* ConnectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectorView.swift; sourceTree = "<group>"; };
 		0FED0D1F2455CCA200833419 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		0FED0D212456B2B600833419 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
+		0FED0D2324570AB700833419 /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				0FED0D1B245565AD00833419 /* Loader.swift */,
 				0FED0D1D2455BEAF00833419 /* ConnectorView.swift */,
 				0FED0D1F2455CCA200833419 /* GridView.swift */,
+				0FED0D2324570AB700833419 /* DirectionsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				0FED0CE22453593800833419 /* AppDelegate.swift in Sources */,
 				0FED0CE42453593800833419 /* SceneDelegate.swift in Sources */,
 				0FED0D0E2454080800833419 /* AppRootView.swift in Sources */,
+				0FED0D2424570AB700833419 /* DirectionsView.swift in Sources */,
 				0FED0CE62453593800833419 /* LoginView.swift in Sources */,
 				0FED0D1A24546D7100833419 /* LocationManager.swift in Sources */,
 				0FED0D1C245565AD00833419 /* Loader.swift in Sources */,

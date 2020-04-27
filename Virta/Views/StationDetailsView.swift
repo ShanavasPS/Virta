@@ -7,14 +7,12 @@
 //
 
 import SwiftUI
-import MapKit
 
 struct StationDetailsView: View {
     @EnvironmentObject var session: SessionStore
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @State private var showingAlert = false
-    let mapManager = MapManager()
     
     var station: Station
     var body: some View {
@@ -35,17 +33,7 @@ struct StationDetailsView: View {
                 Text(station.address ?? "")
                 Spacer()
             }.padding(.leading)
-            HStack {
-                Spacer()
-                Button(action: {
-                    self.mapManager.showNavigation(name: self.station.name, latitude: self.station.latitude, longitude: self.station.longitude)
-                }) {
-                    Text("\(station.distance) m")
-                        .foregroundColor(.black)
-                    Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center).padding(.trailing)
-                }
-                .buttonStyle(PlainButtonStyle())
-            }
+            DirectionsView(name: self.station.name, latitude: self.station.latitude, longitude: self.station.longitude, distance: self.station.distance)
             VStack {
                 HStack {
                     Text("Pick a charging point").padding(.bottom, 5)

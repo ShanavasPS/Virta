@@ -8,10 +8,9 @@
 
 import SwiftUI
 import CoreLocation
-import MapKit
+
 struct StationsListItem: View {
     @EnvironmentObject var session: SessionStore
-    let mapManager = MapManager()
     
     let station: Station
     
@@ -21,14 +20,7 @@ struct StationsListItem: View {
                 VStack {
                     HStack {
                         Text(station.name)
-                        Spacer()
-                        Button(action: {
-                            self.mapManager.showNavigation(name: self.station.name, latitude: self.station.latitude, longitude: self.station.longitude)
-                        }) {
-                            Text(String(station.distance) + " m")
-                            Image("icNavigate").resizable().aspectRatio(contentMode: .fit).frame(width: 25, height: 25, alignment: .center)
-                        }
-                        .buttonStyle(PlainButtonStyle())
+                        DirectionsView(name: self.station.name, latitude: self.station.latitude, longitude: self.station.longitude, distance: self.station.distance)
                     }
                     HStack {
                         Text(station.address ?? "")
