@@ -12,6 +12,8 @@ import MapKit
 struct StationDetailsView: View {
     @EnvironmentObject var session: SessionStore
     @State private var showingAlert = false
+    let mapManager = MapManager()
+    
     var station: Station
     var body: some View {
         VStack {
@@ -28,10 +30,7 @@ struct StationDetailsView: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    let coordinate = CLLocationCoordinate2DMake(self.station.latitude, self.station.longitude)
-                    let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
-                    mapItem.name = self.station.name
-                    mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+                    self.mapManager.showNavigation(name: self.station.name, latitude: self.station.latitude, longitude: self.station.longitude)
                 }) {
                     Text("\(station.distance) m")
                     .foregroundColor(.black)
